@@ -2,7 +2,11 @@ package tp.model.agents;
 
 import java.awt.Point;
 
-public class Arbre extends Vegetal {
+import hebergeurs.Hebergeur;
+
+public class Arbre extends Vegetal implements Hebergeur{
+	private boolean peutAcceuillir = true; // En capacité d'acceuillir
+	private Animal frelon;
 
 	public Arbre(Point coord) {
 		super(coord);
@@ -12,5 +16,31 @@ public class Arbre extends Vegetal {
 	public Arbre() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	/** Verifie si l'animal est un varroa */
+	public boolean peutAcceuillir(Animal animal) {
+		if(this.getClass().getSimpleName() == "Frelon") { // Si l'animal est un varroa
+			return true; // valider la possibilité d'acceuil
+		}
+		else {
+			return false; // sinon non
+		}
+	}
+	
+	/** Permet l'acceuil du parasite */
+	public boolean acceuillir(Animal animal) {
+		if(this.peutAcceuillir(animal)){
+			if(peutAcceuillir) { // Si l'animal est un varroa
+				frelon = animal; // le prendre
+				peutAcceuillir = false; // changer le statut en non-acceuilleur
+				return true; // valider la demarche
+			}
+			else {
+				return false; // signaler l'echec de la fonction
+			}		
+		}
+		else {
+			return false;
+		}
+	}	
 }

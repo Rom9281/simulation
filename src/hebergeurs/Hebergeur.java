@@ -1,9 +1,12 @@
 package hebergeurs;
 
-interface Hebergeur {
-	private boolean acceuil = false;
+import tp.model.agents.Animal;
+
+public interface Hebergeur {
 	
-	public static boolean peutAcceuillir() {
-		return acceuil;
-	}
+	public abstract boolean peutAcceuillir(Animal animal);
+	
+	public abstract boolean acceuillir(Animal animal);
+	
+	
 }
