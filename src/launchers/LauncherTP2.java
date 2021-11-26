@@ -15,7 +15,7 @@ public class LauncherTP2 {
 				//complétez la méthode pour tester les nouvelles fonctionnalités que vous allez implémenter
 				Animal a = new Animal();
 				Animal b = new Animal(Sexe.Male);
-				//Animal c = new Animal(Sexe.Assexue);
+				Animal c = new Animal(Sexe.Assexue);
 				Animal d = new Animal(Sexe.Femelle,new Point(25,30));
 				Animal e = new Animal(Sexe.Femelle,new Point(25,30));
 
@@ -27,7 +27,7 @@ public class LauncherTP2 {
 				System.out.println(a);
 				System.out.println(a.toString());
 				System.out.println(b);
-				//System.out.println(c);
+				System.out.println(c);
 				System.out.println(d);
 
 				System.out.println("*** Getters et setters **********");
