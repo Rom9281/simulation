@@ -1,9 +1,9 @@
 package hebergeurs;
 
-public class Hebergeur {
-
-	public Hebergeur() {
-		// TODO Auto-generated constructor stub
+interface Hebergeur {
+	private boolean acceuil = false;
+	
+	public static boolean peutAcceuillir() {
+		return acceuil;
 	}
-
 }
