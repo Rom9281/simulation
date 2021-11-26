@@ -6,7 +6,6 @@ import tp.model.agents.Agent;
 import tp.model.agents.Animal;
 import tp.model.agents.Sexe;
 
-
 public class LauncherTP2 {
 	
 	public static void main(String [] args) {
