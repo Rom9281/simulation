@@ -13,9 +13,17 @@ public class Agent {
 	/** position sur la carte*/
 	protected Point coord;
 
-	public Agent() {
+	
+	
+	public Agent(Point point) {
 		super();
+		this.coord = new Point(point);
 	}
+	
+	public Agent() {
+		this(new Point(0,0));
+	}
+
 
 	public int getAge() {
 		return age;
@@ -34,7 +42,7 @@ public class Agent {
 	}
 
 	public String toString() {
-		String ret_str = this.getClass().getSimpleName()+" n° "+id+"(, "+this.getCoord().getX()+","+this.getCoord().getY()+").";
+		String ret_str = this.getClass().getSimpleName()+" nï¿½ "+id+"(, "+this.getCoord().getX()+","+this.getCoord().getY()+").";
 		return ret_str;
 	}
 

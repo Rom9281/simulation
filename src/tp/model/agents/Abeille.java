@@ -3,22 +3,21 @@ package tp.model.agents;
 import java.awt.Point;
 import hebergeurs.Hebergeur;
 
+
 public class Abeille extends Animal implements Hebergeur{
-	private boolean peutAcceuillir = true; // En capacité d'acceuillir
-	private Animal parasite;
+	private boolean parasite = false;
 
 	public Abeille(Sexe sexe, Point coord) {
-		super(sexe, coord);
+		super(sexe, new Point(coord));
 		// TODO Auto-generated constructor stub
 	}
 
 	public Abeille(Sexe sexe) {
-		super(sexe);
-		// TODO Auto-generated constructor stub
+		this(sexe, new Point(0,0));
 	}
 
 	public Abeille() {
-		// TODO Auto-generated constructor stub
+		this(Sexe.Male,new Point(0,0));
 	}
 	
 	/** Verifie si l'animal est un varroa */
@@ -33,9 +32,8 @@ public class Abeille extends Animal implements Hebergeur{
 	/** Permet l'acceuil du parasite */
 	public boolean acceuillir(Animal animal) {
 		if(this.peutAcceuillir(animal)){
-			if(peutAcceuillir) { // Si l'animal est un varroa
-				parasite = animal; // le prendre
-				peutAcceuillir = false; // changer le statut en non-acceuilleur
+			if(!(this.parasite)) { // Si l'animal est un varroa
+				this.parasite = true; // le prendre
 				return true; // valider la demarche
 			}
 			else {
@@ -46,5 +44,4 @@ public class Abeille extends Animal implements Hebergeur{
 			return false;
 		}
 	}	
-	
 }
