@@ -2,6 +2,8 @@ package tp.model.agents;
 
 import java.awt.Point;
 
+import tp.model.agents.Animaux.Abeille;
+
 public class Abeille_domestique extends Abeille {
 
 	public Abeille_domestique(Sexe sexe, Point coord) {

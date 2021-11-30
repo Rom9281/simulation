@@ -1,9 +1,11 @@
-package tp.model.agents;
+package tp.model.agents.Animaux;
 
 import java.awt.Point;
 
 import heberges.Heberge;
 import hebergeurs.Hebergeur;
+import tp.model.agents.Animal;
+
 import java.util.HashSet;
 
 
@@ -15,7 +17,7 @@ public class Abeille extends Animal implements Hebergeur,Heberge{
 	
 	private boolean parasite = false;
 	protected HashSet population; // création de la variable contenat la population
-	
+	protected boolean heberge = false;
 	/*
 	 * Constructeurs
 	 * */
@@ -67,12 +69,15 @@ public class Abeille extends Animal implements Hebergeur,Heberge{
 	}
 	
 	/**
-	 * Utilisé pour specifier qui est hebergé*/
-	public boolean peutHabiter(Decor decor){
-		return true;
+	 * Utilisé pour specifier qui est hebergé
+	 
+	public boolean habiter(Hebergeur hebergeur){
+		if(hebergeur.acceuillir(this)) { // Demande le droit d'asile
+			return true; // est accepté
+		}
+		else {
+			return false; // est refusé
+		}
 	}
-	
-	public boolean habiter(Decor decor){
-		return true;
-	}
+	*/
 }
