@@ -12,12 +12,11 @@ public class Ruche extends Decor implements Hebergeur{
 	protected int populationMax; // Int definissant le nombre d'habitant max
 	
 	public Ruche(Point point) {
-		super();
-		this.coord = new Point(point);
+		super(point); // Appel du constructeur de décor
 	}
 	
 	public Ruche() {
-		this(new Point(0,0));
+		this(new Point(0,0)); // appel d'un autre constructeur
 	}
 	
 	public boolean peutAcceuillir(Animal animal) {
@@ -30,11 +29,22 @@ public class Ruche extends Decor implements Hebergeur{
 	}
 	
 	public boolean acceuillir(Animal animal) { // TODO : Il faut gerer les cas ou la population est trop grande.
+		
 		if(this.peutAcceuillir(animal)){
-			return true; // valider la demarche		
+			
+			if(this.population.size() == this.populationMax){ // Si la population est égal à la taille maximale
+				
+				this.population.add(animal.hashCode()); // Ajouter le hash de l'animal au bail
+				return true; // valider la demarche		
+				
+			}
+			
+			else {
+				return false; // Refus d'ajouter
+			}
 		}
 		else {
-			return false;
+			return false; // Refus d'ajouter
 		}
 	}
 	
