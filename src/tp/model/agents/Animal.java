@@ -8,7 +8,7 @@ import java.awt.Point;
  */
 public class Animal extends Agent {
 	/** état de santé de l'animal */
-	private Etat etat; // On initialise l'animal =Etat.<valeur> a chaque animal sp�cifique
+	private Etat etat; // On initialise l'animal =Etat.<valeur> a chaque animal sp�cifique
 	private Sexe sexe;
 
 	/* 
@@ -17,16 +17,13 @@ public class Animal extends Agent {
 
 
 	public Animal(Sexe sexe, Point coord) {
-		super();
+		super(new Point(coord));
 		this.age = 0; // Modification de l'age:  pas de modification directement
-		// Utilit� d�pend du cahier des charges
+		// Utilit� d�pend du cahier des charges
 
 		this.id = Animal.getUniqueId(); // recuperation de l'id
 
 		this.sexe=sexe; // On definit le sexe de l'objet
-
-		//this.coord=coord;
-		this.coord=new Point(coord);
 	}
 
 	public Animal(Sexe sexe) {
@@ -39,7 +36,6 @@ public class Animal extends Agent {
 	}
 
 	public Animal() {
-		//TODO
 		/* crée un animal de sexe femelle, à la position (0;0), d'âge 0 et lui attribue un id unique
 		 * une bonne manière de faire 
 		 * en utilisant ce qui existe déjà, une moins bonne
@@ -73,7 +69,7 @@ public class Animal extends Agent {
 		double dx = 3*Math.random() - 1.5; // ajout de x
 		double dy = 3*Math.random() - 1.5; // ajout de y
 
-		this.coord.move((int) (coord.getX()+dx),(int) (coord.getX()+dy)); // modification des coordonn�s
+		this.coord.move((int) (coord.getX()+dx),(int) (coord.getX()+dy)); // modification des coordonn�s
 	}
 
 
