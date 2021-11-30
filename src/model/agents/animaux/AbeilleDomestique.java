@@ -1,7 +1,6 @@
 package model.agents.animaux;
 
 import java.awt.Point;
-
 import model.decor.Ruche;
 import model.agents.Sexe;
 
