@@ -2,7 +2,6 @@ package model.decor;
 
 import java.awt.Point;
 import java.util.HashSet;
-
 import model.agents.Animal;
 import model.agents.Sexe;
 import model.agents.animaux.AbeilleDomestique;
@@ -13,7 +12,8 @@ public class Ruche extends Decor implements Hebergeur{
 	/**
 	 * Liste des abeilles de la ruche 
 	 */
-	//private TODO population;
+	private HashSet<Class<AbeilleDomestique>> population = new HashSet<Class<AbeilleDomestique>>();// creation du hashlist de la population d'abeilles
+	
 	/**
 	 * constante taille maximale de la ruche
 	 */

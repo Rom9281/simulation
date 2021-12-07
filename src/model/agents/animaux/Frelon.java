@@ -19,7 +19,7 @@ public abstract class Frelon extends Animal {
 		super(s,p);
 		
 		proies = new ArrayList<Class<? extends Animal>>(); // creation de la liste de classes acceptables
-		proies.add(AbeilleDomestique.class); // Ajout des abeilles domestiques à cette 
+		proies.add(AbeilleDomestique.class); // Ajout des abeilles domestiques à cette array de objets de classe classe
 		proies.add(AbeilleSolitaire.class);  //
 		
 		
@@ -40,16 +40,14 @@ public abstract class Frelon extends Animal {
 		
 	}
 	
-	protected void gestionProie(Animal proie) {
-		//si le frelon a faim et 
-		// TODO: qu'il a bien affaire à une proie, c'est à dire que la classe de a 
-		// appartient bien à la liste proies
-		// supprimer le instanceof et remplacer par cette vérification
+	protected void gestionProie(Animal proie_pot) {
+		/**
+		 * Gere la relation du frelon avec sa proie
+		 * */
 		
-		if(faim && (proies.contains(proie.getClass()))) {
-			if(true){
-				faim=false;
-			}
+		if(faim && (proies.contains(proie_pot.getClass()))) { // Si le frelon a faim et que sa liste de proie contient le type de l'animal
+			faim=false; // Le frelon n'as plus faim
+			// TODO : developper un peu plus cet aspect...(niveau de vie...)
 		}
 	}
 	
