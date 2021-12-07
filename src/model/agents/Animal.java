@@ -1,6 +1,7 @@
 package model.agents;
 
 import java.awt.Point;
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -131,33 +132,40 @@ public abstract class Animal extends Agent implements Deplacable {
 	}
 	
 	protected final void aggraverEtat() {
-		/* détail sur plusieurs lignes de:
-		 * 	LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values()));
+		/**
+		 * Agrave l'etat de l'animal
+		 * */
 
-		Etat[] tableauEtat = Etat.values();
+		/*Etat[] tableauEtat = Etat.values();
 		List<Etat> listeEtat = Arrays.asList(tableauEtat);
-		LinkedList<Etat> liste = new LinkedList<Etat>(listeEtat);
-		*/
+		//LinkedList<Etat> liste = new LinkedList<Etat>(listeEtat);
+		
 		LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values()));
-		// ArrayList<Etat> liste = new ArrayList<Etat>(Arrays.asList(Etat.values()));
-		/* détail de
-		 * Iterator<Etat> it = liste.listIterator(liste.indexOf(etat));
+		Iterator<Etat> it = liste.listIterator(liste.indexOf(etat));
 		 
-		int indexEtatActuel = liste.indexOf(this.etat); (inutile avec l'algo suivant)
-		Iterator<Etat> it = liste.listIterator();
+		Iterator<Etat> it = liste.listIterator(); // creation de l'iterateur
+		
 		boolean trouve = false;
 		while(it.hasNext() && !trouve) {
-			if(it.next().equals(this.etat)) {trouve=true;}
-		}
+			if(it.next().equals(this.etat)) {
+				trouve=true;
+				}
+			}
 		*/
-		Iterator<Etat> it = liste.listIterator(liste.indexOf(etat));
-		if(it.hasNext()) {etat = it.next();}	
+		
+		LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values())); // creation d'une liste chainé a partir de la collection du type état, que l'on a transformé en array.
+		ListIterator<Etat> it = liste.listIterator(liste.indexOf(etat)); // création de l'itérateur de liste it
+		if(it.hasNext()) {etat = it.next();}	//si jamais on a un état suivant, passer a l'etat suivant
 	}
 	
 	protected final void ameliorerEtat() {
-		/*
-		 * TODO 3 lignes pas plus!
+		/**
+		 * Ameliore l'état de l'animal
 		 */
+		LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values())); // idem aggraver
+		ListIterator<Etat> it = liste.listIterator(liste.indexOf(etat)); //creation de l'it de liste
+		if(it.hasPrevious()) {etat = it.previous();} //si jamais on a un état suivant, passer a l'etat suivant
+		
 		
 	}
 
