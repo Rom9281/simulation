@@ -13,7 +13,7 @@ import model.comportements.Deplacable;
  * @author bruno
  *
  */
-public abstract class Agent {//implements Cloneable, Comparable<Agent>
+public abstract class Agent implements Comparable<Agent>{ //Cloneable
 	
 	/* attributs de classe */
 	private static int currentId = 0;
@@ -72,6 +72,12 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	 * l'objet renvoyé
 	 * @return un clone de {@link #coord}
 	 */
+	
+	public int compareTo(Agent autreAgent) {
+		return age; // TODO: completer la fonction compareTo
+		
+		
+	}
 	/* partie 1 */
 	public Point getCoord() {
 		return new Point(coord);
