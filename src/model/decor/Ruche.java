@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import model.agents.Animal;
+import model.agents.Sexe;
 import model.agents.animaux.AbeilleDomestique;
 import model.comportements.Hebergeur;
 
@@ -12,7 +13,7 @@ public class Ruche extends Decor implements Hebergeur{
 	/**
 	 * Liste des abeilles de la ruche 
 	 */
-	private Set<AbeilleDomestique> population = new LinkedHashSet<AbeilleDomestique>();// creation du hashlist de la population d'abeilles
+	private Set<AbeilleDomestique> population; // creation du hashlist de la population d'abeilles
 	
 	/**
 	 * constante taille maximale de la ruche
@@ -21,7 +22,7 @@ public class Ruche extends Decor implements Hebergeur{
 	
 	public Ruche(Point p) {
 		super(p);
-		//population = new ... TODO;
+		population = new LinkedHashSet<AbeilleDomestique>(); // Initialisation de population
 	}
 
 	@Override
@@ -69,28 +70,34 @@ public class Ruche extends Decor implements Hebergeur{
 		 * Permet de faire l'affichage
 		 */
 		
-		String ret ="";
-		ret = ret + String.format("Ruche (%d;%d) : population %s abeilles",this.getCoord().getX(),this.getCoord().getY(),population.size()); // Impression des informations de la ruche
-		for(AbeilleDomestique membre:population) {
-			ret = ret + String.format("\t*AbeilleDomestique %i : (%d,%d), %s\n",membre.getId(),membre.getCoord().getX(),membre.getCoord().getY(),membre.getSexe()); // impression des informations de chaque 
-		}
-		
 		/*
 		 * "\t" code une tabulation dans une chaine de caractères
 		 * "\n" un saut de ligne 
 		 */
+		
+		String ret =""; // String a retourner
+		
+		ret = ret + String.format("Ruche (%f;%f) : population %s abeilles\n",this.getCoord().getX(),this.getCoord().getY(),population.size()); // Impression des informations de la ruche
+		for(AbeilleDomestique membre:population) {
+			ret = ret + String.format("\t*AbeilleDomestique %d : (%f,%f), %s\n",membre.getId(),membre.getCoord().getX(),membre.getCoord().getY(),membre.getSexe()); // impression des informations de chaque 
+		}
+		
+		
 		return ret;
 	}
 	
 	public static void main(String[] a) {
-		/*
+		/**
+		 * Main pour tester
+		 * TODO : A SUPRIMER!
+		 * */
+		
 		Ruche r = new Ruche(new Point(0,0));
-		new AbeilleDomestique(Sexe.Assexue, new Point(10,20),r);
+		r.accueillir(new AbeilleDomestique(Sexe.Assexue, new Point(10,20),r));
 		System.out.println(r);
-		new AbeilleDomestique(Sexe.Assexue, new Point(10,20),r);
+		r.accueillir(new AbeilleDomestique(Sexe.Femelle, new Point(5,10),r));
 		System.out.println(r);
-		new AbeilleDomestique(Sexe.Femelle, new Point(5,10),r);
+		r.accueillir(new AbeilleDomestique(Sexe.Assexue, new Point(10,20),r));
 		System.out.println(r);
-		*/
 	}
 }
