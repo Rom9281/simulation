@@ -25,11 +25,22 @@ public class Ruche extends Decor implements Hebergeur{
 	}
 
 	@Override
-	public boolean peutAccueillir(Animal a) {
-		return a instanceof AbeilleDomestique; /*&& 
-				&& //population ok
-				//l'abeille n'appartient pas déjà à la ruche
-				 */
+	public boolean peutAccueillir(Animal a){
+		/**
+		 * Methode permetant de savoir si peut acceuillir:
+		 	* Si l'animal est une abeille domestique
+		 	* Si la population est inferieur a la population max
+		 	* Si elle ne contient deja pas cet abeille 	
+		 */
+		
+		if(a instanceof AbeilleDomestique){ // Si l'animal est une abeille domestique
+			if(population.size()<populationMax){ // si la population est inferieur au maximum
+				if(!(population.contains(a))){ // si elle n'est pas deja dans la ruche
+					return true; // peut acceuillir
+				}
+			}
+		} 
+		return false; // sinon non
 	}
 
 	@Override
