@@ -125,6 +125,7 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	 * dépend du type des agents impliqués
 	 * @param a
 	 */
+	
 	public abstract void rencontrer(Agent a); 
 	
 	/**
@@ -133,7 +134,7 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	public final void cycle() {
 		vieillir();
 		if(this instanceof Deplacable) {
-			((Deplacable)this).seDeplacer();
+			((Deplacable)this).seDeplacer(); // Si est deplaceable, on doit quand meme convertir l'objet agent a un type deplaceable
 		}
 		seNourrir();
 		maj();
@@ -141,6 +142,7 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	
 	protected abstract void maj();
 	protected abstract void seNourrir();
+	
 	@Override
 	public String toString() {
 		//NomDeLaClasse n° id_agent (position x; position y)

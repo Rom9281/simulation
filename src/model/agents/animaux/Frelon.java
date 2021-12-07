@@ -17,7 +17,12 @@ public abstract class Frelon extends Animal {
 	
 	public Frelon(Sexe s,Point p) {
 		super(s,p);
-		proies = new ArrayList<Class<? extends Animal>>();
+		
+		proies = new ArrayList<Class<? extends Animal>>(); // creation de la liste de classes acceptables
+		
+		proies.add(AbeilleDomestique.class); // Ajout des abeilles domestiques à cette 
+		proies.add(AbeilleSolitaire.class);  // 
+		
 		/*
 		 * TODO: ajouter l'objet Class qui représente la classe Abeille à la liste proie
 		 */
@@ -40,7 +45,9 @@ public abstract class Frelon extends Animal {
 		// appartient bien à la liste proies
 		// supprimer le instanceof et remplacer par cette vérification
 		if(faim && a instanceof Abeille) {
-			faim=false;
+			if(){
+				faim=false;
+			}
 		}
 	}
 	

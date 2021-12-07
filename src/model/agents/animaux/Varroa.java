@@ -15,7 +15,7 @@ import model.agents.Animal;
 public class Varroa extends Animal {
 	
 	public Varroa(Sexe s, Point p) {
-		//TODO
+		super(s,p);
 	}
 		
 	@Override

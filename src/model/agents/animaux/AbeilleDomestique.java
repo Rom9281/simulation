@@ -7,9 +7,7 @@ import model.agents.Sexe;
 public class AbeilleDomestique extends Abeille {
 
 	public AbeilleDomestique(Sexe s, Point p, Ruche r) {
-		/*
-		 * TODO
-		 */
+		super(s,p);
 	}
 	
 }
