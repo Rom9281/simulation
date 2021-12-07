@@ -7,9 +7,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import model.agents.Agent;
-//partie 2
-
-//import model.agents.PointPositif;
 import model.agents.Sexe;
 import model.agents.animaux.AbeilleDomestique;
 import model.agents.animaux.AbeilleSolitaire;

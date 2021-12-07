@@ -1,9 +1,9 @@
 package model.decor;
 
 import java.awt.Point;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import model.agents.Animal;
-import model.agents.Sexe;
 import model.agents.animaux.AbeilleDomestique;
 import model.comportements.Hebergeur;
 
@@ -12,7 +12,7 @@ public class Ruche extends Decor implements Hebergeur{
 	/**
 	 * Liste des abeilles de la ruche 
 	 */
-	private HashSet<AbeilleDomestique> population = new HashSet<AbeilleDomestique>();// creation du hashlist de la population d'abeilles
+	private Set<AbeilleDomestique> population = new LinkedHashSet<AbeilleDomestique>();// creation du hashlist de la population d'abeilles
 	
 	/**
 	 * constante taille maximale de la ruche
@@ -65,8 +65,15 @@ public class Ruche extends Decor implements Hebergeur{
 	}
 	
 	public String toString() {
+		/**
+		 * Permet de faire l'affichage
+		 */
+		
 		String ret ="";
-		ret = ret + String.format("Ruche (0;0) : population %s abeilles",population.size());
+		ret = ret + String.format("Ruche (%d;%d) : population %s abeilles",this.getCoord().getX(),this.getCoord().getY(),population.size()); // Impression des informations de la ruche
+		for(AbeilleDomestique membre:population) {
+			ret = ret + String.format("\t*AbeilleDomestique %i : (%d,%d), %s\n",membre.getId(),membre.getCoord().getX(),membre.getCoord().getY(),membre.getSexe()); // impression des informations de chaque 
+		}
 		
 		/*
 		 * "\t" code une tabulation dans une chaine de caractères

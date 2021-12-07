@@ -2,14 +2,9 @@ package model.agents;
 
 import java.awt.Point;
 import java.util.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedList;
-//pour l'exemple détaillé de aggraverEtat
-import java.util.List;
 import java.util.ListIterator;
-
 import model.comportements.Deplacable;
 import model.comportements.Hebergeur;
 
