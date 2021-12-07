@@ -45,7 +45,7 @@ public abstract class Frelon extends Animal {
 		// appartient bien à la liste proies
 		// supprimer le instanceof et remplacer par cette vérification
 		if(faim && a instanceof Abeille) {
-			if(){
+			if(true){
 				faim=false;
 			}
 		}
