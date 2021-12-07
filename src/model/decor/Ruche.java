@@ -12,7 +12,7 @@ public class Ruche extends Decor implements Hebergeur{
 	/**
 	 * Liste des abeilles de la ruche 
 	 */
-	private HashSet<Class<AbeilleDomestique>> population = new HashSet<Class<AbeilleDomestique>>();// creation du hashlist de la population d'abeilles
+	private HashSet<AbeilleDomestique> population = new HashSet<AbeilleDomestique>();// creation du hashlist de la population d'abeilles
 	
 	/**
 	 * constante taille maximale de la ruche
@@ -45,19 +45,29 @@ public class Ruche extends Decor implements Hebergeur{
 
 	@Override
 	public boolean accueillir(Animal a) {
+		/**
+		 * Methode permetant d'acceuillir une abeille domestique
+		 * */
+		
 		boolean ret = false;
-		if(peutAccueillir(a)) {
+		
+		if(peutAccueillir(a)) { // On verifie que la ruche peut acceuillir
+			
 			/* Ne pas faire ça ici: c'est à l'animal de mettre à jour ses attributs
 			 * a.setHebergeur(this);
 			 */
-			//TODO ajouter a à la population
+			
+			population.add(((AbeilleDomestique) a)); // ajoute l'abeille domestique a la ruche
+			
 			ret=true;
 		}
 		return ret;
 	}
 	
 	public String toString() {
-		String ret ="TODO";
+		String ret ="";
+		ret = ret + String.format("Ruche (0;0) : population %s abeilles",population.size());
+		
 		/*
 		 * "\t" code une tabulation dans une chaine de caractères
 		 * "\n" un saut de ligne 
