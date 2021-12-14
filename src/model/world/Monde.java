@@ -1,10 +1,12 @@
 package model.world;
 
 import java.awt.Point;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import model.agents.Agent;
 import model.agents.Sexe;
@@ -25,6 +27,7 @@ public class Monde {
 	/**
 	 * map de probabilité pour trouver un agent
 	 */
+	private Set<Set<Agent>> voisins_agent; 
 	private static final Map<Integer,Agent> proba= Monde.probaAgent();
 	/**
 	 * constante: largeur du monde
@@ -42,6 +45,7 @@ public class Monde {
 	
 	public Monde(int nbAgents) {
 		agents=generateAgents(nbAgents);
+		voisins_agent = generateVoisinsAgents();
 	}
 	
 	/**
@@ -95,6 +99,15 @@ public class Monde {
 		int aleaY = (int)(Math.random()*LONGUEUR);
 		agent.setCoord(aleaX, aleaY);
 		return agent;
+	}
+	
+	private TreeMap<Agent,HashSet<Agent>> generateVoisinsAgents(){
+		TreeMap<Agent,HashSet<Agent>> tm = new TreeMap<Agent,HashSet<Agent>>();
+		for(Agent particulier:agents) {
+			tm.put(particulier,(HashSet<Agent>) gererRencontre(particulier));
+		}
+		return tm;
+		
 	}
 
 	private TreeSet<Agent> generateAgents(int nbAgents) {
@@ -162,15 +175,22 @@ public class Monde {
 		String ret="";
 		ret+="******************************\n";
 		ret+="Le monde contient "+agents.size()+" agents:\n";
-		/*
-		 * TODO
-		Set<Agent> coordSet = new TreeSet<Agent>(new CoordComparator());//TODO
-		coordSet.addAll(agents);
-		*/
-		for(Agent a:agents) {
+		
+		Set<Agent> coordSet = new TreeSet<Agent>(new CoordComparator());//Appel la classe comparateur pour comparer les agents selon leur coordonnés
+		coordSet.addAll(agents); // 
+		
+		for(Agent a:coordSet) {// on remplace agents->coordSet pour changer le mode de comparaison
 			ret+="\t"+a+"\n";
 		}
 		return ret;
+	}
+	
+	public Set<Agent> gererRencontre(Agent particulier) {
+		Set<Agent> rencontresPossibles = new HashSet<Agent>();
+		rencontresPossibles.addAll(agents);
+		rencontresPossibles.remove(particulier);
+		return rencontresPossibles;
+		
 	}
 
 	/**

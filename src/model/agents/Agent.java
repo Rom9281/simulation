@@ -1,7 +1,6 @@
 package model.agents;
 
 import java.awt.Point;
-
 import model.comportements.Deplacable;
 
 /**
@@ -25,8 +24,8 @@ public abstract class Agent implements Comparable<Agent>{ //Cloneable
 	protected int age;
 	/** position sur la carte*/
 	//protected PointPositif coord;
-	protected Point coord;
 	
+	protected Point coord;
 	/**
 	 * faim (booléen pour le moment)
 	 */
@@ -74,9 +73,9 @@ public abstract class Agent implements Comparable<Agent>{ //Cloneable
 	 */
 	
 	public int compareTo(Agent autreAgent) {
-		return age; // TODO: completer la fonction compareTo
-		
-		
+		if(this.getId() > autreAgent.getId()) {return 1;}
+		else if(this.getId() < autreAgent.getId()) {return -1;}
+		else {return 0;}
 	}
 	/* partie 1 */
 	public Point getCoord() {
@@ -131,7 +130,6 @@ public abstract class Agent implements Comparable<Agent>{ //Cloneable
 	 * dépend du type des agents impliqués
 	 * @param a
 	 */
-	
 	public abstract void rencontrer(Agent a); 
 	
 	/**
