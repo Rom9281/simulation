@@ -18,10 +18,11 @@ public abstract class Abeille extends Animal implements Hebergeur{
 	 * parasite éventuel de l'abeille
 	 * si l'abeille est parasitée, passe à true
 	 */
-	private boolean parasite=false;
+	private boolean est_parasite=false;
 	/**
 	 * quantité de miel transporté par l'abeille
 	 */
+	Varroa parasite = null;
 	private int qteMiel = 0;
 	/**
 	 * constante donnant la quantité maximal de miel que l'abeille peut transporter
@@ -36,10 +37,11 @@ public abstract class Abeille extends Animal implements Hebergeur{
 	public void rencontrer(Agent a) {
 		/* rencontres */
 		/* Accueil: ne pas coder ici
-		 * c'est à l'animal rencontré d'appeler cette méthode
-		 * 
-		 * if(a instanceof Animal) {accueillir((Animal)a);}
-		 */
+		 * c'est à l'animal rencontré d'appeler cette méthode*/
+		 
+		if(a instanceof Animal) {accueillir((Animal)a);
+		}
+		 
 		if(a instanceof Vegetal && qteMiel<Abeille.qteMax) {
 			Vegetal v = (Vegetal)a;
 			qteMiel = qteMiel + v.getPortionNectar();

@@ -9,9 +9,13 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import model.agents.Agent;
+import model.agents.Animal;
+import model.agents.Etat;
 import model.agents.Sexe;
+import model.agents.animaux.Abeille;
 import model.agents.animaux.AbeilleDomestique;
 import model.agents.animaux.AbeilleSolitaire;
+import model.agents.animaux.Frelon;
 import model.agents.animaux.FrelonAsiatique;
 import model.agents.animaux.FrelonEuropeen;
 import model.agents.animaux.Varroa;
@@ -27,7 +31,7 @@ public class Monde {
 	/**
 	 * map de probabilité pour trouver un agent
 	 */
-	private Set<Set<Agent>> voisins_agent; 
+	private TreeMap<Agent,HashSet<Agent>> voisins_agent; 
 	private static final Map<Integer,Agent> proba= Monde.probaAgent();
 	/**
 	 * constante: largeur du monde
@@ -36,6 +40,7 @@ public class Monde {
 	/**
 	 * constante: longueur du monde
 	 */
+	private static final float rayon = 10;
 	private static int LONGUEUR = 20;
 	
 	/**
@@ -45,7 +50,7 @@ public class Monde {
 	
 	public Monde(int nbAgents) {
 		agents=generateAgents(nbAgents);
-		voisins_agent = generateVoisinsAgents();
+		voisins_agent = genererVoisinsAgents();
 	}
 	
 	/**
@@ -101,7 +106,7 @@ public class Monde {
 		return agent;
 	}
 	
-	private TreeMap<Agent,HashSet<Agent>> generateVoisinsAgents(){
+	private TreeMap<Agent,HashSet<Agent>> genererVoisinsAgents(){
 		TreeMap<Agent,HashSet<Agent>> tm = new TreeMap<Agent,HashSet<Agent>>();
 		for(Agent particulier:agents) {
 			tm.put(particulier,(HashSet<Agent>) gererRencontre(particulier));
@@ -192,14 +197,58 @@ public class Monde {
 		return rencontresPossibles;
 		
 	}
+	
+	/**
+	 * Calculer la norme de deux agents et verifier si il y a collision
+	 * */
+	public boolean verifierCollision(Agent agent1, Agent agent2) {
+		boolean valren = false;
+		
+		if( Math.sqrt( Math.pow((agent1.getCoord().getX()-agent2.getCoord().getX()),2)+Math.pow((agent1.getCoord().getY()-agent2.getCoord().getY()),2)) < rayon*rayon){valren=true;}
+		
+		return valren;
+	}
+	/**
+	 * Methode permettant la supression d'un élement
+	 * */
+	public void supprimer(Agent supprime) {
+		agents.remove(supprime); // supprime l'agent de la liste
+	}
 
 	/**
 	 * génère un cycle de vie dans le monde
 	 */
 	public void cycle() {
-		/*
-		 * TODO appeler la méthode cycle sur tous les agents		
-		 */
+		
+		// -1-
+		voisins_agent = genererVoisinsAgents(); // mis a jour de chacun des agents
+		
+		for(Agent particulier:agents) { // Pour chaque agent a chaque tout
+			for(Agent voisin:voisins_agent.get(particulier)){
+				if(verifierCollision(particulier,voisin)){
+					
+					if(particulier instanceof Abeille){
+						particulier = (Abeille) particulier;
+						particulier.rencontrer(voisin);
+						}
+					if(particulier instanceof Frelon) {
+						particulier = (Frelon) particulier;
+						particulier.rencontrer(voisin);
+					}
+				}
+			}
+			
+			// -2-
+			particulier.cycle();
+			
+			// -4- 
+			if(particulier instanceof Animal) {
+				particulier = (Animal) particulier;
+				if(((Animal) particulier).getNiveauSante() == Etat.Mourant){
+					
+				}
+			}
+		}
 	}
 	
 	
