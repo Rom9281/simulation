@@ -219,7 +219,6 @@ public class Monde {
 	 * génère un cycle de vie dans le monde
 	 */
 	public void cycle() {
-		
 		// -1-
 		voisins_agent = genererVoisinsAgents(); // mis a jour de chacun des agents
 		

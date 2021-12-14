@@ -37,11 +37,10 @@ public abstract class Abeille extends Animal implements Hebergeur{
 	public void rencontrer(Agent a) {
 		/* rencontres */
 		/* Accueil: ne pas coder ici
-		 * c'est à l'animal rencontré d'appeler cette méthode*/
+		 * c'est à l'animal rencontré d'appeler cette méthode
 		 
-		if(a instanceof Animal) {accueillir((Animal)a);
-		}
-		 
+		if(a instanceof Animal) {accueillir((Animal)a);}*/
+		
 		if(a instanceof Vegetal && qteMiel<Abeille.qteMax) {
 			Vegetal v = (Vegetal)a;
 			qteMiel = qteMiel + v.getPortionNectar();
@@ -58,14 +57,14 @@ public abstract class Abeille extends Animal implements Hebergeur{
 		/*
 		 * l'abeille n'a pas de parasite et l'animal est un Varroa
 		 */
-		return a instanceof Varroa && !parasite;
+		return a instanceof Varroa && !est_parasite;
 	}
 
 	@Override
-	public boolean accueillir(Animal a) {
+	public boolean accueillir(Animal animal) {
 		boolean ret = false;
-		if(peutAccueillir(a)) {
-			parasite = true;
+		if(peutAccueillir(animal)) {
+			est_parasite = true;
 			aggraverEtat();
 			ret = true;
 		}
