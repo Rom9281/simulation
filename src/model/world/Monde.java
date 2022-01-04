@@ -242,8 +242,8 @@ public class Monde {
 			
 			// -4- 
 			if(particulier instanceof Animal) {
-				particulier = (Animal) particulier;
 				if(((Animal) particulier).getNiveauSante() == Etat.Mourant){
+					((Animal) particulier).mourrir();
 					
 				}
 			}

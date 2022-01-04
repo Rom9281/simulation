@@ -19,14 +19,18 @@ public abstract class Abeille extends Animal implements Hebergeur{
 	 * si l'abeille est parasitée, passe à true
 	 */
 	private boolean est_parasite=false;
+	Varroa parasite = null;
+	
 	/**
 	 * quantité de miel transporté par l'abeille
 	 */
-	Varroa parasite = null;
 	private int qteMiel = 0;
+	
 	/**
 	 * constante donnant la quantité maximal de miel que l'abeille peut transporter
 	 */
+	
+	
 	private static final int qteMax = 10;
 	
 	public Abeille(Sexe s, Point p) {
@@ -82,6 +86,21 @@ public abstract class Abeille extends Animal implements Hebergeur{
 	protected void seNourrir() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public boolean supprimer(Animal a) {
+		/**
+		 * Permet de supprimer l'habitant si il existe
+		 * */
+		
+		boolean ret = false;
+		
+		if(this.est_parasite) { // Si l'abeille est parasité
+			this.parasite = null; // Oublier le parasite
+			ret = true; // Operation OK
+		}
+		
+		return ret;
 	}
 
 }

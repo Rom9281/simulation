@@ -23,4 +23,6 @@ public interface Hebergeur {
 	 * @return
 	 */
 	public boolean accueillir(Animal a);
+	
+	public boolean supprimer(Animal a);
 }

@@ -86,6 +86,23 @@ public class Ruche extends Decor implements Hebergeur{
 		return ret;
 	}
 	
+	public boolean supprimer(Animal mort) {
+		/**
+		 * Permet de supprimer l'habitant d'une liste
+		 * */
+		
+		boolean ret = false;
+		
+		// TODO: verifier le type
+		
+		if(population.contains(mort)) { // Si le mort fait bien partie de la population
+			this.population.remove(mort); // Enlever le mort
+			ret = true; // valider la transaction
+		}
+			
+		return ret;
+	}
+	
 	public static void main(String[] a) {
 		/**
 		 * Main pour tester

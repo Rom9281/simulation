@@ -17,7 +17,6 @@ public class Varroa extends Animal {
 	public Varroa(Sexe s, Point p) {
 		super(s,p);
 	}
-		
 	@Override
 	public void rencontrer(Agent a) {
 		//code à trouver en section 6

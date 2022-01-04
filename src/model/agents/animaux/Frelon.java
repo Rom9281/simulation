@@ -23,7 +23,6 @@ public abstract class Frelon extends Animal {
 		proies.add(AbeilleSolitaire.class);  //
 		
 		
-		
 		/*
 		 * TODO: ajouter l'objet Class qui représente la classe Abeille à la liste proie
 		 */
