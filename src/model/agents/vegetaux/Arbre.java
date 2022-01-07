@@ -1,11 +1,12 @@
 package model.agents.vegetaux;
 
 import java.awt.Point;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import model.agents.Agent;
 import model.agents.Animal;
-import model.agents.animaux.AbeilleDomestique;
 import model.agents.animaux.AbeilleSolitaire;
 import model.agents.animaux.Frelon;
 import model.comportements.Hebergeur;

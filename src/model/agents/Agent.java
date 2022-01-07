@@ -71,12 +71,12 @@ public abstract class Agent implements Comparable<Agent>{ //Cloneable
 	 * l'objet renvoyé
 	 * @return un clone de {@link #coord}
 	 */
-	
 	public int compareTo(Agent autreAgent) {
 		if(this.getId() > autreAgent.getId()) {return 1;}
 		else if(this.getId() < autreAgent.getId()) {return -1;}
 		else {return 0;}
 	}
+	
 	/* partie 1 */
 	public Point getCoord() {
 		return new Point(coord);
