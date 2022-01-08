@@ -20,19 +20,21 @@ public class Ruche extends Decor implements Hebergeur{
 	 */
 	private static int populationMax = 1000;
 	
+	/**
+	 * Constructeur
+	 * */
 	public Ruche(Point p) {
 		super(p);
 		population = new LinkedHashSet<AbeilleDomestique>(); // Initialisation de population
 	}
 
-	@Override
+	
 	/**
 	 * Methode permetant de savoir si peut acceuillir:
 	 	* Si l'animal est une abeille domestique
 	 	* Si la population est inferieur a la population max
 	 	* Si elle ne contient deja pas cet abeille 	
 	 */
-	
 	public boolean peutAccueillir(Animal a){
 		if(a instanceof AbeilleDomestique){ // Si l'animal est une abeille domestique
 			if(population.size()<populationMax){ // si la population est inferieur au maximum
@@ -44,7 +46,7 @@ public class Ruche extends Decor implements Hebergeur{
 		return false; // sinon non
 	}
 
-	@Override
+	
 	/**
 	 * Methode permetant d'acceuillir une abeille domestique
 	 * */
@@ -65,11 +67,10 @@ public class Ruche extends Decor implements Hebergeur{
 		return ret;
 	}
 	
+	/**
+	 * Permet de faire l'affichage
+	 */
 	public String toString() {
-		/**
-		 * Permet de faire l'affichage
-		 */
-		
 		/*
 		 * "\t" code une tabulation dans une chaine de caractères
 		 * "\n" un saut de ligne 
@@ -81,20 +82,15 @@ public class Ruche extends Decor implements Hebergeur{
 		for(AbeilleDomestique membre:population) {
 			ret = ret + String.format("\t*AbeilleDomestique %d : (%f,%f), %s\n",membre.getId(),membre.getCoord().getX(),membre.getCoord().getY(),membre.getSexe()); // impression des informations de chaque 
 		}
-		
-		
 		return ret;
 	}
 	
+	/**
+	 * Permet de supprimer l'habitant d'une liste
+	 * */
 	public boolean supprimer(Animal mort) {
-		/**
-		 * Permet de supprimer l'habitant d'une liste
-		 * */
-		
 		boolean ret = false;
-		
 		// TODO: verifier le type
-		
 		if(population.contains(mort)) { // Si le mort fait bien partie de la population
 			this.population.remove(mort); // Enlever le mort
 			ret = true; // valider la transaction
@@ -103,12 +99,12 @@ public class Ruche extends Decor implements Hebergeur{
 		return ret;
 	}
 	
+	/**
+	 * Main pour tester
+	 * TODO : A SUPRIMER!
+	 * */
+	/*
 	public static void main(String[] a) {
-		/**
-		 * Main pour tester
-		 * TODO : A SUPRIMER!
-		 * */
-		
 		Ruche r = new Ruche(new Point(0,0));
 		r.accueillir(new AbeilleDomestique(Sexe.Assexue, new Point(10,20),r));
 		System.out.println(r);
@@ -117,4 +113,5 @@ public class Ruche extends Decor implements Hebergeur{
 		r.accueillir(new AbeilleDomestique(Sexe.Assexue, new Point(10,20),r));
 		System.out.println(r);
 	}
+	*/
 }

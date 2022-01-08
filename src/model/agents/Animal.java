@@ -49,7 +49,7 @@ public abstract class Animal extends Agent implements Deplacable {
 	/** hebergeur de l'animal */
 	protected Hebergeur hebergeur = null;
 	
-	/* 
+	/** 
 	 * constructeurs 
 	 */
 	public Animal(Sexe sexe, Point p) {
@@ -59,20 +59,10 @@ public abstract class Animal extends Agent implements Deplacable {
 	
 	public Animal(Sexe sexe) {
 		this(sexe,new Point(0,0));
-		//TODO
-		/* crée un animal avec le sexe passé en paramètre, à la position (0;0), d'âge 0 et lui attribue un id unique
-		 * une bonne manière de faire 
-		 * en utilisant ce qui existe déjà, une moins bonne
-		 */
 	}
 	
 	public Animal() {
 		this(Sexe.Femelle);
-		//TODO
-		/* crée un animal de sexe femelle, à la position (0;0), d'âge 0 et lui attribue un id unique
-		 * une bonne manière de faire 
-		 * en utilisant ce qui existe déjà, une moins bonne
-		 */
 	}
 	
 	/*

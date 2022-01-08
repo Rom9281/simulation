@@ -1,5 +1,7 @@
 package model.comportements;
 
+import java.awt.Point;
+
 import model.agents.Animal;
 
 /**
@@ -25,4 +27,6 @@ public interface Hebergeur {
 	public boolean accueillir(Animal a);
 	
 	public boolean supprimer(Animal a);
+	
+	public Point getCoord();
 }

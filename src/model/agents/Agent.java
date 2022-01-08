@@ -122,7 +122,7 @@ public abstract class Agent implements Comparable<Agent>{ //Cloneable
 	 * fait vieillir l'agent d'une unité de temps
 	 */
 	public void vieillir() {
-		setAge(age+1);
+		++this.age; // incrémente l'age de 1
 	}
 	
 	/**
@@ -131,29 +131,23 @@ public abstract class Agent implements Comparable<Agent>{ //Cloneable
 	 * @param a
 	 */
 	public abstract void rencontrer(Agent a); 
+	protected abstract void maj();
+	protected abstract void seNourrir();
 	
 	/**
 	 * template method sur le cycle
 	 */
 	public final void cycle() {
 		vieillir();
-		if(this instanceof Deplacable) {
-			((Deplacable)this).seDeplacer(); // Si est deplaceable, on doit quand meme convertir l'objet agent a un type deplaceable
-		}
+		if(this instanceof Deplacable) {((Deplacable)this).seDeplacer();} // Si est deplaceable, on doit quand meme convertir l'objet agent a un type deplaceable
 		seNourrir();
 		maj();
 	}
 	
-	protected abstract void maj();
-	protected abstract void seNourrir();
-	
 	@Override
 	public String toString() {
-		//NomDeLaClasse n° id_agent (position x; position y)
-		return getClass().getSimpleName() + " " + id + " (" + getCoord() + ")";
+		return getClass().getSimpleName() + " " + id + " (" + getCoord() + ")";//NomDeLaClasse n° id_agent (position x; position y)
 	}
-	
-	
 	
 	@Override
 	public int hashCode() {

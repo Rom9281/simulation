@@ -24,30 +24,32 @@ import model.agents.vegetaux.Fleur;
 import model.decor.Ruche;
 
 public class Monde {
-	/**
-	 * population d'agents dans le monde
-	 */
+	/**population d'agents dans le monde*/
 	private Set<Agent>agents;
-	/**
-	 * map de probabilité pour trouver un agent
-	 */
+	
+	/**map de probabilité pour trouver un agent*/
 	private TreeMap<Agent,HashSet<Agent>> voisins_agent; 
 	private static final Map<Integer,Agent> proba= Monde.probaAgent();
-	/**
-	 * constante: largeur du monde
-	 */
+	
+	/**constante: largeur du monde*/
 	private static int LARGEUR = 30;
-	/**
-	 * constante: longueur du monde
-	 */
+	
+	/**constante: longueur du monde*/
 	private static final float rayon = 10;
 	private static int LONGUEUR = 20;
 	
+	/**Nombre de cycles*/
+	private int cycles = 0;
+	
+	/**Durée d'un jour*/
+	private final int duree_jour = 8;
+	
+	/**Mode nuit activé*/
+	private boolean nuit = false;
+	
 	/**
-	 * 
 	 * @param nbAgents
 	 */
-	
 	public Monde(int nbAgents) {
 		agents=generateAgents(nbAgents);
 		voisins_agent = genererVoisinsAgents();
@@ -116,9 +118,6 @@ public class Monde {
 	}
 
 	private TreeSet<Agent> generateAgents(int nbAgents) {
-			/*
-			 * NE PAS TOUCHER!
-			 */
 		TreeSet<Agent> ts = new TreeSet<Agent>();
 		for(int i=0;i<nbAgents;i++) {
 			int alea = (int)(Math.random()*100);
@@ -219,33 +218,34 @@ public class Monde {
 	 * génère un cycle de vie dans le monde
 	 */
 	public void cycle() {
-		// -1-
+		++this.cycles; // Incrémente cycle
+		
+		if(cycles % duree_jour == 0) {nuit = !nuit;}
+		
 		voisins_agent = genererVoisinsAgents(); // mis a jour de chacun des agents
 		
 		for(Agent particulier:agents) { // Pour chaque agent a chaque tout
+			
+			// 1. GERER LES COLLISIONS
+			// _______________________
+			
 			for(Agent voisin:voisins_agent.get(particulier)){
 				if(verifierCollision(particulier,voisin)){
-					
-					if(particulier instanceof Abeille){
-						particulier = (Abeille) particulier;
-						particulier.rencontrer(voisin);
-						}
-					if(particulier instanceof Frelon) {
-						particulier = (Frelon) particulier;
-						particulier.rencontrer(voisin);
-					}
+					if(particulier instanceof Abeille){((Abeille) particulier).rencontrer(voisin);} // Utiliser la version Abeille de rencontrer voisin
+					if(particulier instanceof Frelon) {((Frelon) particulier).rencontrer(voisin);} // Utiliser la version Frelon de rencontrer voisin
 				}
 			}
 			
-			// -2-
+			// 2. CYCLE
+			// ________
+			
 			particulier.cycle();
 			
-			// -4- 
+			// 3. GERER LA MORT
+			// ________________
+			
 			if(particulier instanceof Animal) {
-				if(((Animal) particulier).getNiveauSante() == Etat.Mourant){
-					((Animal) particulier).mourrir();
-					
-				}
+				if(((Animal) particulier).getNiveauSante() == Etat.Mourant){((Animal) particulier).mourrir();} // Si un animal est mourant, le faire mourir
 			}
 		}
 	}
